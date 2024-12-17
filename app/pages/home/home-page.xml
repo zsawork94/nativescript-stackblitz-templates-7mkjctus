@@ -1,0 +1,64 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Awonk" class="bg-blue-500 text-white">
+        <ActionItem tap="{{ onLogout }}" ios.position="right" android.position="actionBar">
+            <Label text="Logout" class="text-white p-2" />
+        </ActionItem>
+    </ActionBar>
+
+    <TabView selectedIndex="{{ selectedTabIndex }}" class="bg-gray-100">
+        <TabView.items>
+            <TabViewItem title="Services">
+                <TabViewItem.view>
+                    <GridLayout>
+                        <ListView items="{{ services }}" itemTap="{{ onServiceTap }}">
+                            <ListView.itemTemplate>
+                                <GridLayout columns="*, auto" class="p-4 bg-white m-2 rounded-lg">
+                                    <StackLayout col="0">
+                                        <Label text="{{ name }}" class="text-lg font-bold" />
+                                        <Label text="{{ location }}" class="text-gray-500" />
+                                        <StackLayout orientation="horizontal">
+                                            <Label text="{{ rating }}" class="text-yellow-500" />
+                                            <Label text="★" class="text-yellow-500" />
+                                            <Label text="({{ ratingCount }})" class="text-gray-400" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label col="1" text="{{ experience }} yrs" class="text-blue-500" />
+                                </GridLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+                    </GridLayout>
+                </TabViewItem.view>
+            </TabViewItem>
+            
+            <TabViewItem title="Profile">
+                <TabViewItem.view>
+                    <ScrollView>
+                        <StackLayout class="p-4">
+                            <Label text="{{ name }}" class="text-2xl font-bold text-center" />
+                            <Label text="{{ email }}" class="text-gray-500 text-center mb-4" />
+                            
+                            <StackLayout class="bg-white p-4 rounded-lg">
+                                <Label text="Contact Information" class="text-lg font-bold mb-2" />
+                                <Label text="{{ phone }}" class="text-gray-700" />
+                                <Label text="{{ location }}" class="text-gray-700" />
+                            </StackLayout>
+
+                            <StackLayout visibility="{{ isServiceProvider ? 'visible' : 'collapsed' }}" class="bg-white p-4 rounded-lg mt-4">
+                                <Label text="Service Information" class="text-lg font-bold mb-2" />
+                                <Label text="{{ experience }} years of experience" class="text-gray-700" />
+                                <Label text="Services:" class="text-gray-700 mt-2" />
+                                <Repeater items="{{ services }}">
+                                    <Repeater.itemTemplate>
+                                        <Label text="{{ name }}" class="text-blue-500" />
+                                    </Repeater.itemTemplate>
+                                </Repeater>
+                            </StackLayout>
+
+                            <Button text="Edit Profile" tap="{{ onEditProfile }}" class="btn bg-blue-500 text-white p-4 rounded mt-4" />
+                        </StackLayout>
+                    </ScrollView>
+                </TabViewItem.view>
+            </TabViewItem>
+        </TabView.items>
+    </TabView>
+</Page>

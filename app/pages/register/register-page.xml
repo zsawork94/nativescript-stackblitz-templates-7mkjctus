@@ -1,0 +1,35 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Register" class="bg-blue-500 text-white" />
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <TextField hint="Full Name" text="{{ name }}" class="input p-4 mb-2 rounded" />
+            <TextField hint="Email" text="{{ email }}" keyboardType="email" class="input p-4 mb-2 rounded" />
+            <TextField hint="Password" text="{{ password }}" secure="true" class="input p-4 mb-2 rounded" />
+            <TextField hint="Phone Number" text="{{ phone }}" keyboardType="phone" class="input p-4 mb-2 rounded" />
+            <TextField hint="Location" text="{{ location }}" class="input p-4 mb-2 rounded" />
+            
+            <Label text="Are you a service provider?" class="text-lg mt-4 mb-2" />
+            <Switch checked="{{ isServiceProvider }}" class="mb-4" />
+            
+            <StackLayout visibility="{{ isServiceProvider ? 'visible' : 'collapsed' }}">
+                <TextField hint="Years of Experience" text="{{ experience }}" keyboardType="number" class="input p-4 mb-2 rounded" />
+                <Label text="Select Services:" class="text-lg mb-2" />
+                <ListView items="{{ serviceCategories }}" itemTap="{{ onServiceSelect }}" height="200">
+                    <ListView.itemTemplate>
+                        <StackLayout orientation="horizontal" class="p-2">
+                            <Label text="{{ name }}" />
+                            <Image src="{{ selected ? 'res://check' : 'res://uncheck' }}" width="20" height="20" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <Button text="Register" tap="{{ onRegister }}" class="btn bg-green-500 text-white p-4 rounded mt-4" />
+            <Button text="Back to Login" tap="{{ onBackToLogin }}" class="btn bg-gray-500 text-white p-4 rounded mt-2" />
+            
+            <ActivityIndicator busy="{{ isLoading }}" class="mt-4" />
+            <Label text="{{ errorMessage }}" class="text-red-500 text-center" textWrap="true" />
+        </StackLayout>
+    </ScrollView>
+</Page>

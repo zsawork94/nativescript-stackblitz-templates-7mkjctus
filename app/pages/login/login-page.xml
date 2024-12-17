@@ -1,0 +1,16 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Awonk" class="bg-blue-500 text-white" />
+    
+    <StackLayout class="p-4">
+        <Label text="Welcome to Awonk" class="text-3xl font-bold text-center mb-4" />
+        
+        <TextField hint="Email" text="{{ email }}" keyboardType="email" class="input p-4 mb-2 rounded" />
+        <TextField hint="Password" text="{{ password }}" secure="true" class="input p-4 mb-4 rounded" />
+        
+        <Button text="Login" tap="{{ onLogin }}" class="btn bg-blue-500 text-white p-4 rounded" />
+        <Button text="Register" tap="{{ onRegisterTap }}" class="btn bg-green-500 text-white p-4 rounded mt-2" />
+        
+        <ActivityIndicator busy="{{ isLoading }}" class="mt-4" />
+        <Label text="{{ errorMessage }}" class="text-red-500 text-center" textWrap="true" />
+    </StackLayout>
+</Page>
